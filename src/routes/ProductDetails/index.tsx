@@ -3,18 +3,31 @@ import ButtonInverse from "../../components/ButtonInverse";
 import ButtonPrimary from "../../components/ButtonPrimary";
 import HeaderClient from "../../components/HeaderClient";
 import ProductDetailsCard from "../../components/ProductDetailsCard";
+import { ProductDTO } from '../../models/product';
 
-export default function ProductDetails(){
-    return (<>
-        <HeaderClient></HeaderClient>
-          <main>
-            <section id="product-details-section" className="dsc-container">
-              <ProductDetailsCard></ProductDetailsCard>
-              <div className="dsc-btn-page-container">
-                  <ButtonPrimary></ButtonPrimary>
-                  <ButtonInverse></ButtonInverse>
-              </div>
-            </section>
-          </main>
-        </>);
+const product: ProductDTO = {
+  id: 2,
+  name: "SmartTv",
+  description: "TV de última geração",
+  imgUrl: "https://github.com/devsuperior/dscatalog-resources/blob/master/backend/img/2-big.jpg?raw=true",
+  price: 2500.99,
+  categories: [
+    { id: 2, name: 'Eletrônicos' },
+    { id: 3, name: 'Computadores' }
+  ]
+}
+
+export default function ProductDetails() {
+  return (<>
+    <HeaderClient></HeaderClient>
+    <main>
+      <section id="product-details-section" className="dsc-container">
+        <ProductDetailsCard product={product}></ProductDetailsCard>
+        <div className="dsc-btn-page-container">
+          <ButtonPrimary></ButtonPrimary>
+          <ButtonInverse></ButtonInverse>
+        </div>
+      </section>
+    </main >
+  </>);
 }
