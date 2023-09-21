@@ -1,22 +1,15 @@
 import './styles.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { OrderDTO, OrderItemDTO } from '../../../models/order';
 import * as cartService from '../../../services/cart-service';
 
 
 const item1 = new OrderItemDTO(4, 1, 'PC Gamer', 1200, 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/4-big.jpg');
 const item2 = new OrderItemDTO(5, 2, 'Rails for Dummies', 1200, 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/5-big.jpg');
-const cart: OrderDTO = new OrderDTO();
 
 export default function Cart() {
 
-
-    useEffect(() => {
-        cart.items.push(item1);
-        cart.items.push(item2);
-
-        cartService.saveCart(cart);
-    }, [])
+    const [cart, setCart] = useState<OrderDTO>(cartService.getCart());
 
     return (
         <main>
