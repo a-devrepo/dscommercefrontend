@@ -1,7 +1,7 @@
 export class OrderDTO {
   id?: number;
   items: OrderItemDTO[] = [];
-  getTotal(): number {
+  get total(): number {
     let sum = 0;
     this.items.forEach((item) => {
       sum += item.subTotal;
