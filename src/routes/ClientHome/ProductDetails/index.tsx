@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ProductDTO } from '../../../models/product';
 import * as productService from '../../../services/product-service';
+import * as cartService from '../../../services/cart-service';
 
 
 export default function ProductDetails() {
@@ -24,6 +25,13 @@ export default function ProductDetails() {
       })
   }, [])
 
+  function handleBuyClick() {
+    if (product) {
+      cartService.addProduct(product);
+      navigate("/cart");
+    }
+  }
+
   return (
     <main>
       <section id="product-details-section" className="dsc-container">
@@ -31,7 +39,9 @@ export default function ProductDetails() {
           product && <ProductDetailsCard product={product} />
         }
         <div className="dsc-btn-page-container">
-          <ButtonPrimary name="Comprar"></ButtonPrimary>
+          <div onClick={handleBuyClick}>
+            <ButtonPrimary name="Comprar"></ButtonPrimary>
+          </div>
           <Link to="/">
             <ButtonInverse name="Início"></ButtonInverse>
           </Link>
