@@ -5,10 +5,16 @@ import './styles.css';
 import { useEffect, useState } from 'react';
 import { ProductDTO } from '../../../models/product';
 import * as productService from '../../../services/product-service';
+import { CategoryDTO } from '../../../models/category';
 
 export default function Catalog() {
 
   const [products, setProducts] = useState<ProductDTO[]>();
+
+  const objTest: CategoryDTO = {
+    id: 8,
+    name: 'jardinagem',
+  }
 
   useEffect(() => {
     productService.findAll()
