@@ -1,30 +1,39 @@
+import './styles.css';
 import ButtonNextPage from '../../../components/ButtonNextPage';
 import CatalogCard from '../../../components/CatalogCard';
 import SearchBar from '../../../components/SearchBar';
-import './styles.css';
 import { useEffect, useState } from 'react';
 import { ProductDTO } from '../../../models/product';
 import * as productService from '../../../services/product-service';
 
+type QueryParams = {
+  page: number;
+  name: string;
+}
+
 export default function Catalog() {
 
   const [products, setProducts] = useState<ProductDTO[]>();
-  const [productName, setProductName] = useState("");
+  const [queryParams, setQueryParams] = useState<QueryParams>(
+    {
+      page: 0,
+      name: ""
+    });
 
 
   function handleSearch(searchText: string) {
-    setProductName(searchText);
+    setQueryParams({ ...queryParams, name: searchText });
   }
 
   useEffect(() => {
-    productService.findPageRequest(0, productName)
+    productService.findPageRequest(queryParams.page, queryParams.name)
       .then(response => {
         setProducts(response.data.content)
       }).
       catch(error => {
 
       });
-  }, [productName])
+  }, [queryParams])
 
   return (
     <main>
