@@ -13,7 +13,9 @@ type QueryParams = {
 
 export default function Catalog() {
 
-  const [products, setProducts] = useState<ProductDTO[]>();
+  const [islastPage, setlastPage] = useState(false);
+
+  const [products, setProducts] = useState<ProductDTO[]>([]);
   const [queryParams, setQueryParams] = useState<QueryParams>(
     {
       page: 0,
@@ -22,13 +24,20 @@ export default function Catalog() {
 
 
   function handleSearch(searchText: string) {
-    setQueryParams({ ...queryParams, name: searchText });
+    setProducts([]);
+    setQueryParams({ ...queryParams, page: 0, name: searchText });
+  }
+
+  function handleNextPageClick() {
+    setQueryParams({ ...queryParams, page: queryParams.page + 1 })
   }
 
   useEffect(() => {
     productService.findPageRequest(queryParams.page, queryParams.name)
       .then(response => {
-        setProducts(response.data.content)
+        const nextPage = response.data.content;
+        setProducts(products.concat(nextPage));
+        setlastPage(response.data.last)
       }).
       catch(error => {
 
@@ -44,7 +53,11 @@ export default function Catalog() {
             products && products.map(product => <CatalogCard key={product.id} product={product} />)
           }
         </div>
-        <ButtonNextPage></ButtonNextPage>
+        {
+          !islastPage && <div onClick={handleNextPageClick}>
+            <ButtonNextPage></ButtonNextPage>
+          </div>
+        }
       </section>
     </main>
   );
