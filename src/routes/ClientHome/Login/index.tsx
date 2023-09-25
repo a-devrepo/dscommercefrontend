@@ -38,7 +38,7 @@ export default function Login() {
             <div className="dsc-login-form-container">
                 <form className="dsc-card dsc-form" onSubmit={handleSubmit}>
                     <h2>Login</h2>
-                    <div className="dsc-form-control-container">
+                    <div className="dsc-form-controls-container">
                         <div>
                             <input
                                 name="username"
