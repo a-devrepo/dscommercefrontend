@@ -2,8 +2,11 @@ import './styles.css';
 import { useState } from 'react';
 import { CredentialsDTO } from '../../../models/auth';
 import * as authService from '../../../services/auth-service';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState<CredentialsDTO>(
         {
@@ -18,6 +21,7 @@ export default function Login() {
             .then(response => {
                 if (response) {
                     authService.saveAccessToken(response.data.access_token);
+                    navigate("/cart");
                 }
             })
             .catch(error => {
