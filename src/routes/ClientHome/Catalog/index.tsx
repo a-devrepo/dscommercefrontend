@@ -5,6 +5,7 @@ import SearchBar from '../../../components/SearchBar';
 import { useEffect, useState } from 'react';
 import { ProductDTO } from '../../../models/product';
 import * as productService from '../../../services/product-service';
+import { isAuthenticated } from '../../../services/auth-service';
 
 type QueryParams = {
   page: number;
@@ -33,6 +34,7 @@ export default function Catalog() {
   }
 
   useEffect(() => {
+    console.log("Autenticado", isAuthenticated())
     productService.findPageRequest(queryParams.page, queryParams.name)
       .then(response => {
         const nextPage = response.data.content;

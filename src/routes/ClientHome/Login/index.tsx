@@ -18,7 +18,6 @@ export default function Login() {
             .then(response => {
                 if (response) {
                     authService.saveAccessToken(response.data.access_token);
-                    console.log(authService.getAccessTokenPayload());
                 }
             })
             .catch(error => {
