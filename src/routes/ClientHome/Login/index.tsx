@@ -3,8 +3,12 @@ import { useState } from 'react';
 import { CredentialsDTO } from '../../../models/auth';
 import * as authService from '../../../services/auth-service';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { ContextToken } from '../../../utils/context-token';
 
 export default function Login() {
+
+    const { setContextTokenPayload } = useContext(ContextToken);
 
     const navigate = useNavigate();
 
@@ -21,6 +25,7 @@ export default function Login() {
             .then(response => {
                 if (response) {
                     authService.saveAccessToken(response.data.access_token);
+                    setContextTokenPayload(authService.getAccessTokenPayload());
                     navigate("/cart");
                 }
             })
