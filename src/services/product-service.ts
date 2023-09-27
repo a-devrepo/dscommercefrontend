@@ -24,3 +24,13 @@ export function findPageRequest(
 export function findById(id: number): ProductDTO | undefined {
   return requestBackend({ url: `/products/${id}` });
 }
+
+export function deleteById(id: number) {
+  const config: AxiosRequestConfig = {
+    method: "DELETE",
+    url: `/products/${id}`,
+    withCredentials: true,
+  };
+
+  return requestBackend(config);
+}
