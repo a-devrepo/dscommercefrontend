@@ -96,8 +96,8 @@ export default function ProductListing() {
                     </thead>
                     <tbody>
                         {
-                            products && products.map(product => (
-                                <tr key={product.id}>
+                            products && products.map((product, index) => (
+                                <tr key={index}>
                                     <td className="dsc-tb576">{product.id}</td>
                                     <td>
                                         <img className="dsc-product-listing-image" src={product.imgUrl} alt={product.name} />
