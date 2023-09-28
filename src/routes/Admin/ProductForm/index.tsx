@@ -134,17 +134,21 @@ export default function ProductForm() {
                             <div>
                                 <FormSelect
                                     {...formData.categories}
+                                    className="dsc-form-control"
                                     options={categories}
                                     onChange={(obj: any) => {
                                         const newFormData = forms.upDateAndValidate(formData, "categories", obj);
                                         setFormData(newFormData);
 
                                     }}
-                                    onTurnDirty={handleTurnDirty}
                                     isMulti
+                                    onTurnDirty={handleTurnDirty}
                                     getOptionLabel={(obj: any) => obj.name}
                                     getOptionValue={(obj: any) => String(obj.id)}
                                 />
+                                <div className='dsc-form-error'>
+                                    {formData.categories.message}
+                                </div>
                             </div>
                             <div>
                                 <FormTextArea
