@@ -12,7 +12,7 @@ export default function FormTextArea(props: any) {
     }
 
     return (
-        <input onBlur={handleBlur}
+        <textarea onBlur={handleBlur}
             {...textAreaProps}
             data-invalid={invalid}
             data-dirty={dirty} />
