@@ -1,10 +1,10 @@
-export default function FormInput(props: any) {
+export default function FormTextArea(props: any) {
 
     const { validation,
         invalid = "false",
         dirty = "false",
         onTurnDirty,
-        ...inputProps
+        ...textAreaProps
     } = props;
 
     function handleBlur() {
@@ -13,7 +13,7 @@ export default function FormInput(props: any) {
 
     return (
         <input onBlur={handleBlur}
-            {...inputProps}
+            {...textAreaProps}
             data-invalid={invalid}
             data-dirty={dirty} />
     )
