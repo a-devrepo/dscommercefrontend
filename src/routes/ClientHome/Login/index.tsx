@@ -4,6 +4,7 @@ import * as authService from '../../../services/auth-service';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { ContextToken } from '../../../utils/context-token';
+import FormInput from '../../../components/FormInput';
 
 export default function Login() {
 
@@ -62,22 +63,15 @@ export default function Login() {
                     <h2>Login</h2>
                     <div className="dsc-form-controls-container">
                         <div>
-                            <input
-                                name="username"
-                                value={formData.username.value}
+                            <FormInput
+                                {...formData.username}
                                 className="dsc-form-control"
-                                type="text"
-                                placeholder={formData.username.placeholder}
                                 onChange={handleInputChange} />
-
                         </div>
                         <div>
-                            <input
-                                name="password"
-                                value={formData.password.value}
+                            <FormInput
+                                {...formData.password}
                                 className="dsc-form-control"
-                                type="password"
-                                placeholder={formData.password.placeholder}
                                 onChange={handleInputChange} />
                         </div>
                     </div>
