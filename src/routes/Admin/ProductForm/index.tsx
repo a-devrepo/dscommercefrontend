@@ -45,10 +45,8 @@ export default function ProductForm() {
         if (isEditing) {
             productService.findById(Number(params.productId))
                 .then(response => {
-                    console.log(response.data);
-                })
-                .catch(error => {
-
+                    const newFormData = forms.updateAll(formData, response.data);
+                    setFormData(newFormData);
                 })
         }
     }, [])
@@ -62,7 +60,7 @@ export default function ProductForm() {
                         <div className="dsc-form-controls-container">
                             <div>
                                 <FormInput
-                                    {...formData.username}
+                                    {...formData.name}
                                     className="dsc-form-control"
                                     onChange={handleInputChange} />
                             </div>
