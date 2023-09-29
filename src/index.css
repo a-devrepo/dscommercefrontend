@@ -303,6 +303,11 @@ nav a {
   padding-top: 10px;
 }
 
+.dsc-form-select-container {
+  padding: unset;
+  height: unset;
+}
+
 @media (min-width: 576px) {
   .dsc-form h2 {
     font-size: 24px;
