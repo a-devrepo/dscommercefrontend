@@ -34,3 +34,14 @@ export function deleteById(id: number) {
 
   return requestBackend(config);
 }
+
+export function updateRequest(obj: ProductDTO) {
+  const config: AxiosRequestConfig = {
+    method: "PUT",
+    url: `/products/${obj.id}`,
+    withCredentials: true,
+    data: obj,
+  };
+
+  return requestBackend(config);
+}
